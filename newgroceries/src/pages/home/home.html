@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Groceries</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="loadItems().length === 0" text-center>
+    <h1>No items currently present in the list.</h1>
+  </div>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of loadItems(); let i = index">
+      <ion-item>
+        <h2>{{item.name}}</h2>
+        <h4>{{item.quantity}}</h4>
+      </ion-item>
+      <ion-item-options>
+        <button (click)="editItem(item, i)" ion-button color="success" icon-start>
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+        <button (click)="shareItem(item, i)" ion-button color="light" icon-start>
+          <ion-icon name="share"></ion-icon>
+          Share
+        </button>
+        <button (click)="removeItem(item, i)" ion-button color="danger" icon-start>
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab bottom right>
+    <button (click)="addItem()" ion-fab mini><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>
